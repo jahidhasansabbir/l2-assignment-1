@@ -4,9 +4,6 @@ const formatValue = (input: string | number | boolean):string | number | boolean
     if(typeof input === "boolean") return !input;
     return 'Invalid input!'
 }
-// console.log(formatValue('hello'));
-// console.log(formatValue(5));
-// console.log(formatValue(true));
 
 
 const getLength = (input: string | any[]): number =>{
@@ -14,8 +11,6 @@ const getLength = (input: string | any[]): number =>{
     if( Array.isArray(input))return input.length;
     return -1;
 }
-// console.log(getLength('typescript'));
-// console.log(getLength([10, 20, 30, 40]));
 
 class Person{
     name:string;
@@ -29,11 +24,6 @@ class Person{
     }
 }
 
-// const person1 = new Person('John Doe', 30);
-// console.log(person1.getDetails());
-
-// const person2 = new Person('Alice', 25);
-// console.log(person2.getDetails());
 
 type Item = {
     title:string;
@@ -46,13 +36,6 @@ const filterByRating = (input: Item[]): Item[]=>{
     })
     return filteredArray
 }
-// const books = [
-//   { title: 'Book A', rating: 4.5 },
-//   { title: 'Book B', rating: 3.2 },
-//   { title: 'Book C', rating: 5.0 },
-// ];
-
-// console.log(filterByRating(books));
 
 type users = {
     id: number;
@@ -68,13 +51,6 @@ const filterActiveUsers = (input : users[]): users[]=>{
     return filteredUsers;
 }
 
-// const users = [
-//   { id: 1, name: 'Rakib', email: 'rakib@example.com', isActive: true },
-//   { id: 2, name: 'Asha', email: 'asha@example.com', isActive: false },
-//   { id: 3, name: 'Rumi', email: 'rumi@example.com', isActive: true },
-// ];
-
-// console.log(filterActiveUsers(users));
 
 interface Book{
     title:string,
@@ -87,11 +63,45 @@ const printBookDetails=(input: Book)=>{
     const {title,author, publishedYear, isAvailable }= input;
     console.log(`Title: ${title}, Author: ${author }, Published: ${publishedYear}, Available: ${isAvailable? 'Yes': 'No'}`)
 }
-// const myBook: Book = {
-//   title: 'The Great Gatsby',
-//   author: 'F. Scott Fitzgerald',
-//   publishedYear: 1925,
-//   isAvailable: true,
-// };
 
-// printBookDetails(myBook);
+
+const getUniqueValues = (arr1:(string | number)[], arr2:(string | number)[]): (string | number)[]=>{
+    const mergeArr: (number | string)[] = [];
+    for(let i = 0; i<(arr1.length+arr2.length); i++){
+        if(i<arr1.length){
+            mergeArr[mergeArr.length]= arr1[i]
+        }
+        else{
+            mergeArr[mergeArr.length]=arr2[i-arr1.length]
+        }
+    }
+    const uniqueArr: (string|number)[] = [];
+    const isNotPresent = (item: string | number): boolean=>{
+        for(let i = 0; i<uniqueArr.length; i++){
+            if(uniqueArr[i]=== item)return false
+        }
+        return true;
+    }
+    for(let i = 0; i<mergeArr.length; i++){
+        if(isNotPresent(mergeArr[i])){
+            uniqueArr[uniqueArr.length] = mergeArr[i];
+        }
+    }
+    return uniqueArr;
+}
+
+
+type product ={
+    name:string;
+    price: number;
+    quantity: number;
+    discount?: number;
+}
+
+const calculateTotalPrice = (input:product[]):number=>{
+    const totalPrice = input.reduce((total, singleProduct)=>{
+        const {discount, price,quantity}=singleProduct
+        return total+(price * quantity*(1-(discount||0)/100))
+    },0);
+    return totalPrice;
+}
