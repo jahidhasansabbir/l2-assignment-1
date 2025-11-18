@@ -24,7 +24,7 @@ const user: Person = { name: "Sabbir", age: 25 };
 
 ---
 
-### **Type **
+### **Type**
 
 Type হলো একটি নাম দিয়ে কোনো টাইপকে সংজ্ঞায়িত করার উপায়। এটি object, union, intersection, primitive, tuple ইত্যাদি টাইপ ধারণ করতে পারে।
 * **ব্যবহার:**
