@@ -35,12 +35,12 @@ class Person{
 // const person2 = new Person('Alice', 25);
 // console.log(person2.getDetails());
 
-type Book = {
+type Item = {
     title:string;
     rating: number;
 }
-const filterByRating = (input: Book[]): Book[]=>{
-    let filteredArray:Book[] = [];
+const filterByRating = (input: Item[]): Item[]=>{
+    let filteredArray:Item[] = [];
     input.forEach(element =>{
         if(element.rating>=4)filteredArray.push(element)
     })
@@ -53,3 +53,45 @@ const filterByRating = (input: Book[]): Book[]=>{
 // ];
 
 // console.log(filterByRating(books));
+
+type users = {
+    id: number;
+    name:string;
+    email:string;
+    isActive: boolean;
+}
+const filterActiveUsers = (input : users[]): users[]=>{
+    const filteredUsers: users[] = [];
+    input.forEach(element=>{
+        if(element.isActive)filteredUsers.push(element)
+    })
+    return filteredUsers;
+}
+
+// const users = [
+//   { id: 1, name: 'Rakib', email: 'rakib@example.com', isActive: true },
+//   { id: 2, name: 'Asha', email: 'asha@example.com', isActive: false },
+//   { id: 3, name: 'Rumi', email: 'rumi@example.com', isActive: true },
+// ];
+
+// console.log(filterActiveUsers(users));
+
+interface Book{
+    title:string,
+    author: string,
+    publishedYear: number,
+    isAvailable: boolean
+}
+
+const printBookDetails=(input: Book)=>{
+    const {title,author, publishedYear, isAvailable }= input;
+    console.log(`Title: ${title}, Author: ${author }, Published: ${publishedYear}, Available: ${isAvailable? 'Yes': 'No'}`)
+}
+// const myBook: Book = {
+//   title: 'The Great Gatsby',
+//   author: 'F. Scott Fitzgerald',
+//   publishedYear: 1925,
+//   isAvailable: true,
+// };
+
+// printBookDetails(myBook);
